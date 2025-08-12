@@ -1,6 +1,6 @@
 import json
 from langchain.prompts import PromptTemplate
-from llm_setup import get_llm
+from config.llm_setup import get_llm
 
 prompt_template = PromptTemplate(
     input_variables=["plan_data"],
