@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from services.plan_service import generate_plan
-from services.ai_plan_service import generate_ai_plan
+from services.ai_plan_service import generate_ai_training_diet_plan
 from models.plan_responses import PlanResponse
 from models.plan_request import PlanRequest
 from docs.plan_request_docs import plan_description
@@ -17,7 +17,7 @@ app = FastAPI(
 
 async def run_generate_ai_plan(plan_data: dict) -> dict:
     loop = asyncio.get_running_loop()
-    return await loop.run_in_executor(executor, generate_ai_plan, plan_data)
+    return await loop.run_in_executor(executor, generate_ai_training_diet_plan, plan_data)
 
 
 @app.post(

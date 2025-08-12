@@ -39,7 +39,7 @@ Return a **valid** JSON (with no extra text) with the following structure:
 )
 
 
-def generate_ai_plan(plan_data: dict) -> dict:
+def generate_ai_training_diet_plan(plan_data: dict) -> dict:
     """Generates a diet and training plan using LangChain + OpenAI."""
     plan_str = json.dumps(plan_data, indent=2)
 
