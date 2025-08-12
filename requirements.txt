@@ -3,3 +3,5 @@ uvicorn
 langchain
 boto3
 python-dotenv
+openai
+langchain-openai
