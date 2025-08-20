@@ -35,21 +35,23 @@ Return a **valid** JSON (with no extra text) with the following structure:
 }}
 
 ⚠️ IMPORTANT: Only respond with valid JSON, no extra text before or after.
-""",
+"""
 )
 
-
-def generate_ai_training_diet_plan(plan_data: dict) -> dict:
-    """Generates a diet and training plan using LangChain + OpenAI."""
+async def generate_ai_training_diet_plan(plan_data: dict) -> dict:
+    """Generates a diet and training plan using LangChain + OpenAI asynchronously."""
     plan_str = json.dumps(plan_data, indent=2)
 
+    # Crear una instancia del LLM por cada llamada para evitar conflictos
     llm = get_llm()
 
+    # Construir la cadena usando prompt_template
     chain = prompt_template | llm
-    response = chain.invoke({"plan_data": plan_str})  # sin await
+
+    # Usar ainvoke para llamadas asincrónicas
+    response = await chain.ainvoke({"plan_data": plan_str})
 
     try:
         return json.loads(response.content)
     except json.JSONDecodeError:
         raise ValueError("The model did not return valid JSON.")
-
