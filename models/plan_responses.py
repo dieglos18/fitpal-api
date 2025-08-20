@@ -1,5 +1,10 @@
 from pydantic import BaseModel
-from typing import Union
+from typing import Optional, Union
+
+class AIPlan(BaseModel):
+    diet_plan: dict
+    training_plan: dict
+    explanation: str
 
 class PlanResponseFeasible(BaseModel):
     feasible: bool = True
@@ -9,6 +14,7 @@ class PlanResponseFeasible(BaseModel):
     days: int
     daily_deficit: int | None = None
     daily_surplus: int | None = None
+    ai_plan: Optional[AIPlan] = None
 
 class PlanResponseNotFeasible(BaseModel):
     feasible: bool = False
